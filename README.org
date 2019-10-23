@@ -1,0 +1,22 @@
+* WordScramble
+*A simple SwiftUI word game.*
+
+[[gif.gif]]
+
+** Day 29
+** Day 30
+ - View Modifier .onAppear(perform:) takes a function name as a parameter, to be executed before the UI is drawn.
+#+BEGIN_SRC Swift
+}.navigationBarTitle(rootWord)
+ .onAppear(perform: startGame)
+#+END_SRC
+ - TextField's onCommit parameter takes a function name to be executed when the user presses return on the keyboard
+ - TextField's .autocapitalization(.none) view modifier to disable the default behavior
+ - Using SFSymbols easily using the Image(systemName:)
+#+BEGIN_SRC Swift
+// the below is the same as List { ForEach(usedWords, id:\.self) {
+List(usedWords, id:\.self) { // id: is used to uniquely identify each row  
+    Image(systemName: "\($0.count).circle") // 1.circle is a SFSymbol
+    Text($0) // List automatically places its contents into an HStack - so it can be omitted
+}
+#+END_SRC
