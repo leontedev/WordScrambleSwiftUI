@@ -20,3 +20,44 @@ List(usedWords, id:\.self) { // id: is used to uniquely identify each row
     Text($0) // List automatically places its contents into an HStack - so it can be omitted
 }
 #+END_SRC
+** Day 31 - Challenge
+#+BEGIN_QUOTE
+1. Disallow answers that are shorter than three letters or are just our start word. For the three-letter check, the easiest thing to do is put a check into isReal() that returns false if the word length is under three letters. For the second part, just compare the start word against their input word and return false if they are the same.
+2. Add a left bar button item that calls startGame(), so users can restart with a new word whenever they want to.
+3. Put a text view below the List so you can track and show the player’s score for a given root word. How you calculate score is down to you, but something involving number of words and their letter count would be reasonable.
+#+END_QUOTE
+** Day 31 - Personal Touch
+ - Show All Permutations
+ - Using the Dictionary instead of UITextChecker. I have noticed that there are strings which are accepted by UITextChecker as being spelled correctly even though they are not words in the dictionary (eg: ffds, fda etc). Probably because they are abbreviations of different sorts.
+#+BEGIN_SRC Swift
+func isReal(word: String) -> Bool {
+        if UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word) {
+            return true
+        } else {
+            return false
+        }
+}
+#+END_SRC
+UIReferenceLibraryViewController is part of UIKit - so that needs to be imported as well.
+It's also able to instantiante a UIKit view with the full definition of the word and buttons to manage dictionaries, look online etc:
+
+I've tried to integrate it in SwiftUI - which is pretty straight-forward using UIViewControllerRepresentable:
+#+BEGIN_SRC Swift
+import SwiftUI
+import UIKit
+
+struct UIReferenceLibraryController: UIViewControllerRepresentable {
+    var word: String
+    
+    func makeUIViewController(context: Context) -> UIReferenceLibraryViewController {
+            let referenceViewController = UIReferenceLibraryViewController(term: word)
+
+            return referenceViewController
+    }
+    
+    func updateUIViewController(_ referenceViewController: UIReferenceLibraryViewController, context: Context) {
+        UIReferenceLibraryViewController(term: word)
+    }
+    
+}
+#+END_SRC

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		893B32D72361996E00FC5245 /* UIReferenceLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893B32D62361996E00FC5245 /* UIReferenceLibrary.swift */; };
 		89DC1B9D236015B6004D4950 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DC1B9C236015B6004D4950 /* AppDelegate.swift */; };
 		89DC1B9F236015B6004D4950 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DC1B9E236015B6004D4950 /* SceneDelegate.swift */; };
 		89DC1BA1236015B6004D4950 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DC1BA0236015B6004D4950 /* ContentView.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		893B32D62361996E00FC5245 /* UIReferenceLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIReferenceLibrary.swift; sourceTree = "<group>"; };
 		89DC1B99236015B6004D4950 /* WordScramble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordScramble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DC1B9C236015B6004D4950 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89DC1B9E236015B6004D4950 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				89DC1B9C236015B6004D4950 /* AppDelegate.swift */,
 				89DC1B9E236015B6004D4950 /* SceneDelegate.swift */,
 				89DC1BA0236015B6004D4950 /* ContentView.swift */,
+				893B32D62361996E00FC5245 /* UIReferenceLibrary.swift */,
 				89DC1BA2236015B9004D4950 /* Assets.xcassets */,
 				89DC1BA7236015B9004D4950 /* LaunchScreen.storyboard */,
 				89DC1BAA236015B9004D4950 /* Info.plist */,
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89DC1B9D236015B6004D4950 /* AppDelegate.swift in Sources */,
+				893B32D72361996E00FC5245 /* UIReferenceLibrary.swift in Sources */,
 				89DC1B9F236015B6004D4950 /* SceneDelegate.swift in Sources */,
 				89DC1BA1236015B6004D4950 /* ContentView.swift in Sources */,
 			);
