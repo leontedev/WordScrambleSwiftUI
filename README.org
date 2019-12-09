@@ -61,3 +61,18 @@ struct UIReferenceLibraryController: UIViewControllerRepresentable {
     
 }
 #+END_SRC
+** Day 75 - Accessibility improvement
+
+Our List view relies on an implicit HStack to place the image and text side by side. So, to fix this we need to create an explicit HStack so we can apply our VoiceOver customization. 
+We will ignore the children of the HStack (the image which shows the number of letters and the word) and instead provide a custom label.
+
+#+BEGIN_SRC Swift
+List(usedWords, id: \.self) { word in
+    HStack {
+        Image(systemName: "\(word.count).circle")
+        Text(word)
+    }
+    .accessibilityElement(children: .ignore)
+    .accessibility(label: Text("\(word), \(word.count) letters"))
+}
+#+END_SRC

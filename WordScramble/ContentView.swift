@@ -32,14 +32,25 @@ struct ContentView: View {
                     .autocapitalization(.none)
                     .padding()
                 
-                List(usedWords, id:\.self) {
-                    //NavigationLink(destination: UIReferenceLibraryController(word: String($0))) {
-                        //HStack {
-                    Image(systemName: "\($0.count).circle")
-                    Text($0)
-                        //}
-                    //}
-                }.listStyle(GroupedListStyle())
+//                List(usedWords, id:\.self) {
+//                    //NavigationLink(destination: UIReferenceLibraryController(word: String($0))) {
+//                        //HStack {
+//                    Image(systemName: "\($0.count).circle")
+//                    Text($0)
+//                        //}
+//                    //}
+//                }.listStyle(GroupedListStyle())
+                
+                // improvement for accesibility
+                
+                List(usedWords, id: \.self) { word in
+                    HStack {
+                        Image(systemName: "\(word.count).circle")
+                        Text(word)
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibility(label: Text("\(word), \(word.count) letters"))
+                }
                 
                 Text("Score: \(score) total letters.")
                     .foregroundColor(.gray)
