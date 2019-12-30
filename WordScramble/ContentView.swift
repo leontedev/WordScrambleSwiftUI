@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-//import UIKit
+
 
 struct ContentView: View {
     @State private var usedWords = [String]()
@@ -43,13 +43,20 @@ struct ContentView: View {
                 
                 // improvement for accesibility
                 
-                List(usedWords, id: \.self) { word in
-                    HStack {
-                        Image(systemName: "\(word.count).circle")
-                        Text(word)
+                
+                List(self.usedWords, id: \.self) { word in
+                    GeometryReader { proxy in
+                        HStack {
+                            Image(systemName: "\(word.count).circle")
+                                .foregroundColor(self.changeColorOnScroll(for: proxy))
+                            Text(word)
+                            Spacer()
+                        }
+                        .offset(x: proxy.frame(in: .global).minY < 600 ? 0 : (proxy.frame(in: .global).minY - 600), y: 0.0)
+                        .accessibilityElement(children: .ignore)
+                        .accessibility(label: Text("\(word), \(word.count) letters"))
+                        
                     }
-                    .accessibilityElement(children: .ignore)
-                    .accessibility(label: Text("\(word), \(word.count) letters"))
                 }
                 
                 Text("Score: \(score) total letters.")
@@ -69,6 +76,13 @@ struct ContentView: View {
 
             }
     }
+    
+    func changeColorOnScroll(for proxy: GeometryProxy) -> Color {
+        let minY = Double(proxy.frame(in: .global).minY)
+        let hue = minY / 800
+        //print("\(minY) / \(800) = \(hue)")
+        return Color(hue: hue, saturation: 0.8, brightness: 0.8)
+    }
 
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
@@ -86,7 +100,7 @@ struct ContentView: View {
             return
         }
         
-        guard isReal(word: answer) else {
+        guard isSpelledCorrectly(word: answer) else {
             wordError(title: "Word not possible", message: "That isn't a real word")
             return
         }
